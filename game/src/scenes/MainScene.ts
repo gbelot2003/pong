@@ -6,7 +6,9 @@ export class MainScene extends Phaser.Scene {
     izquiera: any;
     derecha: any;
     bola : any;
-
+    cursor: any;
+    cursor_W: any;
+    cursor_S: any;
 
     constructor() {
         super({
@@ -55,6 +57,20 @@ export class MainScene extends Phaser.Scene {
             bola.setVelocityY(Phaser.Math.Between(-120, 120))
             return ;
         }
+
+        //controles
+        this.cursor = this.input.keyboard.createCursorKeys();
+        
+        // Pala izquierda
+        this.cursor_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.cursor_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        
+        //pala derecha
+
+
+        //-------
+
+
     }
 
     update(): void {
@@ -68,6 +84,24 @@ export class MainScene extends Phaser.Scene {
 
         if(this.bola.x < 0 || this.bola.x > width){
             this.bola.setPosition(center, middle);
+        }
+
+        //Control de la pala derecha
+        if(this.cursor.down.isDown){
+            this.derecha.body.setVelocityY(300)
+        } else if(this.cursor.up.isDown){
+            this.derecha.body.setVelocityY(-300)
+        } else {
+            this.derecha.body.setVelocityY(0)
+        }
+
+        // control de la pala izquierda
+        if(this.cursor_S.isDown){
+            this.izquiera.body.setVelocityY(300)
+        } else if(this.cursor_W.isDown){
+            this.izquiera.body.setVelocityY(-300)
+        } else {
+            this.izquiera.body.setVelocityY(0)
         }
     }
     
