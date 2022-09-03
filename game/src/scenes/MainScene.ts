@@ -13,6 +13,23 @@ export class MainScene extends Phaser.Scene {
     }
 
     create(): void {
-        this.image = this.add.image(this.scale.width / 2, this.scale.height / 2, 'phaser3_cli');
+        let center: number;
+        let middle: number;
+        let width : any = this.sys.game.config.width;
+        let height : any = this.sys.game.config.height;
+        center = width / 2;
+        middle = height / 2;
+
+        // Separador
+        let separador = this.add.image(center, 200, "separator")
+
+        // Palas
+        let izquiera = this.add.image(30, middle, "right_pallete")
+        let derecha = this.add.image(610, middle, "left_pallete")
+
+        //bola
+        let bola = this.physics.add.image(center, middle, "ball")
+
+
     }
 }
